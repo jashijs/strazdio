@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="lv">
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta name="keywords" content="zemnieku saimniecība, strazdiņi, strazdio, kaņepes, kaņepju sviests, grauzdētas kaņepes, mārdadži, kama, hemp, hemp seeds, milk thisle, kamma, kanep, maarjaohakas">
+      <meta property="og:image"        content="/mnt/data/TAB_LOGO.png" />
+      <meta property="og:image:width"  content="1200" />
+      <meta property="og:image:height" content="630" />
+      <link rel="image_src" href="/mnt/data/TAB_LOGO.png" />
+      <meta name="twitter:card"        content="summary_large_image" />
+      <meta name="twitter:image"       content="/mnt/data/TAB_LOGO.png" />
+      <title>Kaņepes</title>
+      <!-- Standard desktop/favicon.ico fallback -->
+      <link rel="shortcut icon" href="/mnt/data/TAB_LOGO.ico">
+      <!-- Standard ICO favicon -->
+      <link rel="icon" 
+         href="/mnt/data/TAB_LOGO.ico" 
+         type="image/x-icon" />
+      <!-- Apple Touch icon (for iOS home screen) -->
+      <link rel="apple-touch-icon" 
+         href="/mnt/data/TAB_LOGO.ico" />
+      <!-- Manifest for Android/Progressive Web App -->
+      <link rel="manifest" href="/mnt/data/TAB_LOGO.ico" />
+      <style>
+         :root {
+         --main-color: #2e4d2e; /*Deep Pine*/
+         --accent-color: #C2C59F; /*Pale Sage*/
+         --background-color: #fcfcfc; /*Snow White*/
+         --secondary-color: #D4A556; /*Golden Ochre*/
+         }
+         html, body {
+         margin: 0;
+         padding: 0;
+         width: 100vw;
+         background: var(--background-color);
+         color: var(--main-color);
+         font-family: 'Segoe UI', Arial, sans-serif;
+         text-align: center;
+         }
+         /* HEADER with cropped background */
+         header {
+         width: 100%;
+         height: 150px;                    /* adjust as needed */
+         background: url("/mnt/data/HEADER.jpeg") center center;
+         background-size: cover;           /* crops top/bottom nicely */
+         position: relative;
+         }
+         /* Logo sits just below the header */
+         .logo-container {
+         margin-top: 10px;               /* pull up if you want slight overlap */
+         text-align: center;
+         }
+         .logo-img {
+         display: inline-block;
+         width: 25vw;
+         max-width: 720px;
+         min-width: 240px;
+         height: auto;
+         border-radius: 10px;
+         object-fit: contain;
+         }
+         .lang-switch {
+         position: absolute;
+         top: 18px;
+         right: 36px;
+         display: flex;
+         flex-direction: column;
+         align-items: flex-end;
+         z-index: 10;
+         }
+         #selected-lang {
+         background: var(--accent-color);
+         border: none;
+         font-size: 1rem;
+         color: var(--main-color);
+         cursor: pointer;
+         font-weight: bold;
+         letter-spacing: 1px;
+         padding: 0.12em 0.7em;
+         border-radius: 13px;
+         box-shadow: 0 1px 2px #aacfb233;
+         min-width: 45px;
+         }
+         #selected-lang.active,
+         //#selected-lang:hover {
+         //    background: var(--highlight);
+         //    color: #254129;
+         }
+         #lang-menu {
+         display: none;
+         flex-direction: column;
+         margin-top: 0.2em;
+         background: var(--accent-color);
+         border-radius: 10px;
+         box-shadow: 0 2px 8px #aacfb233;
+         overflow: hidden;
+         min-width: 45px;
+         }
+         #lang-menu button {
+         background: none;
+         border: none;
+         font-size: 1rem;
+         color: var(--main-color);
+         cursor: pointer;
+         font-weight: bold;
+         letter-spacing: 1px;
+         padding: 0.12em 0.7em;
+         border-radius: 0;
+         min-width: 45px;
+         text-align: right;
+         }
+         #lang-menu button:hover {
+         background: var(--highlight);
+         }
+         main {
+         max-width: 860px;
+         margin: 1.4rem auto 0 auto;
+         padding: 1.1rem;
+         }
+         h1 {
+         font-size: 1.9rem;
+         margin-top: 0.3rem;
+         margin-bottom: 0.6rem;
+         color: var(--main-color);
+         }
+         .intro {
+         font-size: 1.12rem;
+         margin-bottom: 2.1rem;
+         }
+         .section-title {
+         font-size: 1.22rem;
+         margin: 2.1rem 0 1rem 0;
+         color: var(--main-color);
+         font-weight: bold;
+         text-align: center;
+         }
+         .contacts, .company {
+         background: var(--highlight);
+         border-radius: 13px;
+         padding: 1.3rem 1.1rem;
+         margin: 0 auto 1.3rem auto;
+         font-size: 1.08rem;
+         color: #254129;
+         max-width: 900px;
+         min-width: 400px;
+         width: 80vw;
+         //box-shadow: 0 2px 8px #aacfb258;
+         text-align: left;
+         display: block;
+         white-space: nowrap;
+         overflow-x: auto;
+         }
+         .contacts {
+         background: var(--accent-color);
+         margin-bottom: 0.6rem;
+         }
+         .company {
+         background: var(--accent-color);
+         margin-bottom: 2.1rem;
+         }
+         .contacts, .company {
+         margin-left: auto;
+         margin-right: auto;
+         }
+         .gallery-wrapper {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+         margin-bottom: 2rem;
+         }
+         .gallery-main, .article-img {
+         max-width: 900px;
+         min-width: 400px;
+         width: 80vw;
+         margin: 0 auto;
+         display: block;
+         border-radius: 14px;
+         }
+         .gallery-main {
+         max-height: 500px;
+         min-height: 240px;
+         position: relative;
+         overflow: hidden;
+         background: var(--accent-color);
+         cursor: pointer;
+         }
+         .gallery-main img {
+         width: 100%;
+         height: 100%;
+         object-fit: cover;
+         }
+         .article-img {
+         display: block;
+         margin: 0.5rem auto 1.8rem auto;
+         border-radius: 14px;
+         cursor: pointer;
+         transition: box-shadow 0.2s, transform 0.2s;
+         max-width: 900px;
+         min-width: 400px;
+         width: 80vw;
+         height: auto;           /* This keeps the aspect ratio */
+         object-fit: contain;    /* Prevents stretching */
+         }
+         @media (max-width: 700px) {
+         main { padding: 0.3rem; }
+         .gallery-main, .article-img, .contacts, .company { min-width: unset; width: 93vw; }
+         .gallery-main { height: 45vw; max-height: 56vw; }
+         //.gallery-main { width: 98vw; height: 45vw; max-height: 56vw; }
+         //.article-img { max-width: 99vw; max-height: 65vw; }
+         //.logo-img { height: 110px; width: 110px; }
+         header { min-height: 120px; }
+         }
+         /* Lightbox styles for gallery & article */
+         .lightbox {
+         display: none;
+         position: fixed;
+         z-index: 999;
+         left: 0; top: 0; width: 100vw; height: 100vh;
+         background: rgba(36,65,41,0.93);
+         justify-content: center;
+         align-items: center;
+         }
+         .lightbox.active { display: flex; }
+         .lightbox-content {
+         position: relative;
+         display: flex;
+         align-items: center;
+         }
+         .lightbox img {
+         max-width: 92vw;
+         max-height: 88vh;
+         border-radius: 16px;
+         background: #fff;
+         box-shadow: 0 2px 30px #24402477;
+         }
+         .lightbox-arrow {
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         //color: #fff;
+         color: var(--accent-color);
+         font-size: 2.4rem;
+         font-weight: bold;
+         background: rgba(30,50,30,0.38);
+         border: none;
+         border-radius: 50%;
+         width: 56px; height: 56px;
+         cursor: pointer;
+         user-select: none;
+         z-index: 1001;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         }
+         .lightbox-arrow.left  { left: 8px; }
+         .lightbox-arrow.right { right: 8px; }
+         .lightbox-close {
+         position: absolute;
+         top: 16px; right: 30px;
+         //color: #fff;
+         color: var(--accent-color);
+         font-size: 3rem;
+         font-weight: bold;
+         cursor: pointer;
+         background: none;
+         border: none;
+         user-select: none;
+         z-index: 1002;
+         }
+      </style>
+      <!-- Google tag (gtag.js) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-GECSM3Q3EX"></script>
+      <script>
+         window.dataLayer = window.dataLayer || [];
+         function gtag(){dataLayer.push(arguments);}
+         gtag('js', new Date());
+         gtag('config', 'G-GECSM3Q3EX');
+      </script>
+      <!-- End Google Analytics -->
+   </head>
+   <body>
+      <header>
+         <div class="lang-switch" id="langSwitch">
+            <button id="selected-lang" onclick="toggleLangMenu()">LV</button>
+            <div id="lang-menu">
+               <button onclick="chooseLang('lv')">LV</button>
+               <button onclick="chooseLang('en')">EN</button>
+               <button onclick="chooseLang('et')">ET</button>
+            </div>
+         </div>
+      </header>
+      <div class="logo-container">
+         <img src="/mnt/data/LOGO_PLACEHOLDER.png" alt="Logo" class="logo-img" id="main-logo">
+      </div>
+      <main>
+         <!-- OT -- dummy section to open lightbox for initial LV language-->
+         <section class="lang-section ot">
+            <div class="section-title">nil</div>
+            <div class="gallery-wrapper">
+               <div class="gallery-main" onclick="openGalleryLightbox()">
+                  <img id="mainGalleryImage" src="/mnt/data/IMAGE0.jpeg" alt="">
+               </div>
+            </div>
+         </section>
+         <!-- LV -->
+         <section class="lang-section lv">
+            <h1>Laipni lūgti Zemnieku saimniecības "Strazdiņi" mājaslapā!</h1>
+            <div class="intro">
+               Strazdiņi kopš 2014. gada Latvijā audzē kaņepes un mārdadžus, no kuriem turpat saimniecībā tiek ražoti veselīgi produkti ikdienas uzturam. Šobrīd pircējiem varam piedāvāt dažādus kaņepju un mārdadžu produktus, kas jau kļuvuši novērtēti vairāku Vidzemes pilsētu gadatirgos.<br><br>
+               Viens no iecienītākajiem produktiem ir grauzdētas un piestā grūstas kaņepes – dabisks un bagātīgs uztura papildinājums.
+               Ja vēlaties sazināties vai uzzināt vairāk par mūsu produktiem, lūdzu izmantojiet kontaktinformāciju, kas norādīta zemāk.
+            </div>
+            <div class="section-title">🧺 Meklē mūs tirgos 🧺</div>
+            <div class="contacts" style="line-height: 1">
+               <div id="markets-list"></div>
+            </div>
+            <div class="section-title">🛒 Veikalos 🛒</div>
+            <div class="contacts" style="line-height: 1">
+               <div id="shops-list"></div>
+            </div>
+            <div class="section-title">Kontakti</div>
+            <div class="contacts">
+               <b>📞 Tālrunis:</b> <a href="tel:+3726495405">+371 26495405</a><br>
+               <b>📧 E-pasts:</b> <a href="mailto:karlis@strazdio.lv">karlis@strazdio.lv</a><br>
+               <b>📍 Adrese:</b> “Strazdiņi”, Omuļi, Ērģemes pagasts, Valkas novads, Latvija, LV-4711
+            </div>
+            <div class="section-title">Rekvizīti</div>
+            <div class="company">
+               <b>Nosaukums:</b> Zemnieku saimniecība “Strazdiņi”<br>
+               <b>Reģistrācijas numurs:</b> 43901001741<br>
+               <b>Banka:</b> AS “SEB banka”<br>
+               <b>SWIFT kods:</b> UNLALV2X<br>
+               <b>Konta numurs (IBAN):</b> LV33 UNLA 0017 0006 4381 0
+            </div>
+            <div class="section-title">Galerija</div>
+            <div class="gallery-wrapper">
+               <div class="gallery-main" onclick="openGalleryLightbox()">
+                  <img id="mainGalleryImage" src="/mnt/data/IMAGE0.jpeg" alt="">
+               </div>
+            </div>
+            <div class="section-title">Raksts par mums</div>
+            <img src="/mnt/data/ARTICLE1.jpeg" class="article-img" alt="Raksts par Strazdiņi" onclick="openArticleLightbox()">
+         </section>
+         <!-- EN -->
+         <section class="lang-section en">
+            <h1>Welcome to the farm "Strazdiņi" homepage!</h1>
+            <div class="intro">
+               Since 2014, the farm has been growing hemp and milk thistle in Latvia, producing healthy products for everyday nutrition right on the farm. Today, we offer a variety of hemp and milk thistle products, already appreciated at fairs in several Vidzeme towns.<br><br>
+               One of our most popular products is roasted and crushed hemp seed – a natural and rich dietary supplement. If you want to know more about us and our products, please use contact information bellow.
+            </div>
+            <div class="section-title">Contacts</div>
+            <div class="contacts">
+               <b>📞 Phone:</b> <a href="tel:+3726495405">+371 26495405</a><br>
+               <b>📧 Email:</b> <a href="mailto:karlis@strazdio.lv">karlis@strazdio.lv</a><br>
+               <b>📍 Address:</b> “Strazdiņi”, Omuļi, Ērģemes parish, Valkas region, Latvia, LV-4711
+            </div>
+            <div class="section-title">Company Info</div>
+            <div class="company">
+               <b>Name:</b> Zemnieku saimniecība “Strazdiņi”<br>
+               <b>Registration number:</b> 43901001741<br>
+               <b>Bank:</b> AS “SEB banka”<br>
+               <b>SWIFT code:</b> UNLALV2X<br>
+               <b>IBAN:</b> LV33 UNLA 0017 0006 4381 0
+            </div>
+            <div class="section-title">Gallery</div>
+            <div class="gallery-wrapper">
+               <div class="gallery-main" onclick="openGalleryLightbox()">
+                  <img id="mainGalleryImage" src="/mnt/data/IMAGE0.jpeg" alt="">
+               </div>
+            </div>
+            <div class="section-title">Media Article</div>
+            <img src="/mnt/data/ARTICLE1.jpeg" class="article-img" alt="Article about farm" onclick="openArticleLightbox()">
+         </section>
+         <!-- ET -->
+         <section class="lang-section et">
+            <h1>Tere tulemast talu "Strazdiņi" kodulehele!</h1>
+            <div class="intro">
+               Alates 2014. aastast kasvatatakse Lätis kanepit ja harilikku piimohakat ning toodetakse neist talu territooriumil tervislikke tooteid igapäevaseks toitumiseks. Praegu pakume erinevaid kanepi- ja ohakatooteid, mida on juba hinnatud Vidzeme linna laatadel.<br><br>
+               Üks populaarsemaid tooteid on röstitud ja uhmerdatud kanepiseemned – looduslik ja rikkalik toidulisand.
+            </div>
+            <div class="section-title">Kontaktid</div>
+            <div class="contacts">
+               <b>📞 Telefon:</b> <a href="tel:+3726495405">+371 26495405</a><br>
+               <b>📧 E-post:</b> <a href="mailto:karlis@strazdio.lv">karlis@strazdio.lv</a><br>
+               <b>📍 Aadress:</b> “Strazdiņi”, Omuļi, Ērģeme vald, Valka piirkond, Läti, LV-4711
+            </div>
+            <div class="section-title">Ettevõtte andmed</div>
+            <div class="company">
+               <b>Nimi:</b> Zemnieku saimniecība “Strazdiņi”<br>
+               <b>Registreerimisnumber:</b> 43901001741<br>
+               <b>Pank:</b> AS “SEB banka”<br>
+               <b>SWIFT kood:</b> UNLALV2X<br>
+               <b>IBAN:</b> LV33 UNLA 0017 0006 4381 0
+            </div>
+            <div class="section-title">Galerii</div>
+            <div class="gallery-wrapper">
+               <div class="gallery-main" onclick="openGalleryLightbox()">
+                  <img id="mainGalleryImage" src="/mnt/data/IMAGE1.jpeg" alt="">
+               </div>
+            </div>
+            <div class="section-title">Artikkel meist</div>
+            <img src="/mnt/data/ARTICLE1.jpeg" class="article-img" alt="Artikkel talust" onclick="openArticleLightbox()">
+         </section>
+      </main>
+      <!-- Gallery Lightbox -->
+      <div class="lightbox" id="gallery-lightbox">
+         <div class="lightbox-content">
+            <button class="lightbox-arrow left"  onclick="galleryPrev(event)">←</button>
+            <img    id="gallery-lightbox-img" src="" alt="">
+            <button class="lightbox-arrow right" onclick="galleryNext(event)">→</button>
+            <button class="lightbox-close"      onclick="closeGalleryLightbox()">×</button>
+         </div>
+      </div>
+      <!-- Article Lightbox -->
+      <div class="lightbox" id="article-lightbox">
+         <div class="lightbox-content">
+            <img id="article-lightbox-img" src="/mnt/data/ARTICLE1.jpeg" alt="Raksts par Strazdiņi">
+            <button class="lightbox-close" onclick="closeArticleLightbox()">×</button>
+         </div>
+      </div>
+      <script>
+         // Markets
+         document.addEventListener('DOMContentLoaded', function() {
+         fetch('https://raw.githubusercontent.com/jashijs/strazdio-lists/main/tirgus.txt')
+         .then(response => {
+         if (!response.ok) {
+         throw new Error('Failed to load markets list');
+         }
+         return response.text();
+         })
+         .then(data => {
+         const container = document.getElementById('markets-list');
+             data.trim().split('\n').forEach(line => {
+               if (!line) return;
+               const parts = line.split(' - ');
+               const date = parts[0].trim();
+               const name = parts.slice(1).join(' - ').trim();
+               const p = document.createElement('p');
+               p.innerHTML = `<b>${date}</b> – ${name}`;
+               container.appendChild(p);
+             });
+           })          
+         .catch(err => console.error(err));
+         });
+         // Shops
+         document.addEventListener('DOMContentLoaded', function() {
+         fetch('https://raw.githubusercontent.com/jashijs/strazdio-lists/main/veikali.txt')
+         .then(response => {
+         if (!response.ok) {
+         throw new Error('Failed to load shops list');
+         }
+         return response.text();
+         })
+         .then(data => {
+         const container = document.getElementById('shops-list');
+             data.trim().split('\n').forEach(line => {
+               if (!line) return;
+               const parts = line.split(' - ');
+               const date = parts[0].trim();
+               const name = parts.slice(1).join(' - ').trim();
+               const p = document.createElement('p');
+               p.innerHTML = `<b>${date}</b> – ${name}`;
+               container.appendChild(p);
+             });
+           })          
+         .catch(err => console.error(err));
+         });
+         const galleryImages = [
+           "/mnt/data/IMAGE0.jpeg",
+           "/mnt/data/IMAGE1.jpeg",
+           "/mnt/data/IMAGE2.jpeg",
+           "/mnt/data/IMAGE3.jpeg",
+           "/mnt/data/IMAGE4.jpeg",
+           "/mnt/data/IMAGE5.jpeg",
+           "/mnt/data/IMAGE6.jpeg",
+           "/mnt/data/IMAGE7.jpeg"
+         ];
+         let galleryIndex = 0;
+         function updateGalleryMain() {
+         document.getElementById('mainGalleryImage').src   = galleryImages[galleryIndex];
+         }
+         function openGalleryLightbox() {
+         document.getElementById('gallery-lightbox-img').src = galleryImages[galleryIndex];
+         document.getElementById('gallery-lightbox').classList.add('active');
+         }
+         function closeGalleryLightbox() {
+         document.getElementById('gallery-lightbox').classList.remove('active');
+         }
+         function galleryPrev(e) {
+         e.stopPropagation();
+         galleryIndex = (galleryIndex - 1 + galleryImages.length) % galleryImages.length;
+         refreshGallery();
+         }
+         function galleryNext(e) {
+         e.stopPropagation();
+         galleryIndex = (galleryIndex + 1) % galleryImages.length;
+         refreshGallery();
+         }
+         function refreshGallery() {
+         document.getElementById('gallery-lightbox-img').src = galleryImages[galleryIndex];
+         updateGalleryMain();
+         }
+         // Close on backdrop click
+         document.getElementById('gallery-lightbox').onclick = closeGalleryLightbox;
+         document.getElementById('gallery-lightbox-img').onclick = e => e.stopPropagation();
+         // Keyboard support
+         document.addEventListener('keydown', e => {
+         if (!document.getElementById('gallery-lightbox').classList.contains('active')) return;
+         if (e.key === 'ArrowLeft')  galleryPrev(e);
+         if (e.key === 'ArrowRight') galleryNext(e);
+         if (e.key === 'Escape')     closeGalleryLightbox();
+         });
+         // Click on any preview to cycle through thumbnails
+         ['mainGalleryImage'].forEach(id => {
+         document.getElementById(id).onclick = e => {
+           e.stopPropagation();
+           galleryIndex = (galleryIndex + 1) % galleryImages.length;
+           updateGalleryMain();
+         };
+         });
+         // Initial load
+         updateGalleryMain();
+         // Article Lightbox logic
+         function openArticleLightbox() {
+           document.getElementById('article-lightbox').classList.add('active');
+         }
+         function closeArticleLightbox() {
+           document.getElementById('article-lightbox').classList.remove('active');
+         }
+         document.getElementById('article-lightbox-img').onclick = function(e) { e.stopPropagation(); }
+         document.getElementById('article-lightbox').onclick = function() { closeArticleLightbox(); };
+         // Language switching - dropdown menu logic
+         let currentLang = 'lv';
+         function toggleLangMenu() {
+           const menu = document.getElementById('lang-menu');
+           if (menu.style.display === 'flex') menu.style.display = 'none';
+           else {
+               renderLangMenu();
+               menu.style.display = 'flex';
+           }
+         }
+         function chooseLang(lang) {
+           setLang(lang); // Use your existing setLang
+           currentLang = lang;
+           document.getElementById('selected-lang').innerText = lang.toUpperCase();
+           document.getElementById('lang-menu').style.display = 'none';
+         }
+         // Only show other (not current) languages in dropdown
+         function renderLangMenu() {
+           const menu = document.getElementById('lang-menu');
+           menu.querySelectorAll('button').forEach(btn => {
+               if (btn.innerText.toLowerCase() === currentLang) btn.style.display = 'none';
+               else btn.style.display = '';
+           });
+         }
+         document.addEventListener('click', function(e){
+           // close menu if click outside
+           if(!document.getElementById('langSwitch').contains(e.target)){
+               document.getElementById('lang-menu').style.display = 'none';
+           }
+         });
+         // Language display logic (from earlier)
+         function setLang(lang) {
+           document.querySelectorAll('.lang-section').forEach(el => el.style.display = 'none');
+           document.querySelector('.' + lang).style.display = '';
+         }
+         // Set selected language text initially
+         document.getElementById('selected-lang').innerText = currentLang.toUpperCase();
+         setLang(currentLang);
+      </script>
+      <footer>
+         2025 ZS Strazdiņi <br>
+         Visas tiesības aizsargātas.
+      </footer>
+   </body>
+</html>
